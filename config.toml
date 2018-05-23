@@ -1,46 +1,51 @@
-baseURL = "http://blog.dima23.de/"
-languageCode = "en-us"
+baseurl = "/"
 title = "dima23.blog"
-theme = "kiss"
-copyright = "&copy; <a href=\"https://github.com/dvogt23\">dima</a> 2018 - hugo/kiss"
-#disqusShortname = "shortname"
-googleAnalytics = ""
-# Number of posts per page
-Paginate = 5
-enableRobotsTXT = true
+copyright = "© dima 2018"
+canonifyurls = true
+languageCode = "en-US"
+paginate = 5
+theme = "hugo-dusk"
 
+#googleAnalytics = ""
+#disqusShortname = ""
 
-[params.assets]
-customCSS = ["css/custom.css"]
+[author]
+  name = "dvogt"
 
-[params.info]
-#adsense = "" # Adsense ID (ID only, without ca-pub-)
-#enableSocial = true # Adds OpenGraph and Twitter cards
-homeTitle = "dima23.blog" # Title for home page
-#poweredby = true # Adds powered by hugo and kiss below Copyright
-related = false # Includes related articles at the bottom of the article
+SectionPagesMenu = "main"
 
+# use Chroma for syntax highlight
+pygmentsStyle = "vim" # other dark style options: vim, fruity, monokai
+# enable syntax highlight for code blocks
+pygmentsCodeFences = true
 
-#[params.opengraph.facebook]
-#admins = [] # array of Facebook IDs
-#appID = ""
-#pageID = ""
+#[[menu.main]]
+  #name = "Posts"
+  #weight = -120
+  #identifier = "post"
+  #url = "/post/"
 
-#[params.opengraph.twitter]
-#page = "" # Twitter Page username. If not set, params.social.twitter will be used.
+[[menu.main]]
+  name = "tags"
+  weight = -110
+  identifier = "tag"
+  url = "/tags/"
 
-[params.social]
+[params.meta]
+  keywords = "blog, tech, develop"
+  description = "personal developer blog."
 
-twitter = "dtri23"
-github = "dvogt23"
-#email = ""
-#linkedin = "dima23"
-#facebook = "ribice"
-instagram = "dimav23"
-#codepen = ""
+[params]
+  github = "dvogt23"
+  #gitlab = "gitlab id"
+  twitter = "dtri23"
+  linkedin = "dima23"
+  #email = "myemail"
 
-[taxonomies]
-tag ="tags"
-
-#[blackfriday]
-#hrefTargetBlank = true
+[params.colors]
+  # hugo-dusk colors
+  background = "#101010" # background color for the site
+  main = "#B3B6B7"
+  text = "#dbdbdb"
+  code-quote-bg = "#1D1F21" # background color for quotes and code blocks
+  copyright = "#404040" # copyright text color

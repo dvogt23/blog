@@ -1,8 +1,17 @@
----
-title: "Wildfly LDAP integration"
-date: 2018-04-20T15:00:55+02:00
-draft: false
----
++++
+title = "Wildfly LDAP integration"
+description = "LDAP login possibility for wildfly server"
+tags = [
+    "wildfly",
+    "jboss",
+    "ldap",
+    "webserver",
+]
+date = "2018-04-02"
+categories = [
+    "Server",
+]
++++
 
 In the past, I spent a lot of time to figuring out, how to add the integrated LDAP module of the wildfly server. To do this, you have to take changes in some different places:
 
