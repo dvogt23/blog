@@ -2,7 +2,7 @@ baseURL = "http://blog.dima23.de/"
 languageCode = "en-us"
 title = "dima23.blog"
 theme = "kiss"
-copyright = "&copy; <a href=\"https://github.com/dvogt23\">dima</a> 2018"
+copyright = "&copy; <a href=\"https://github.com/dvogt23\">dima</a> 2018 - hugo/kiss"
 #disqusShortname = "shortname"
 googleAnalytics = ""
 # Number of posts per page
@@ -16,9 +16,9 @@ customCSS = ["css/custom.css"]
 [params.info]
 #adsense = "" # Adsense ID (ID only, without ca-pub-)
 #enableSocial = true # Adds OpenGraph and Twitter cards
-homeTitle = "" # Title for home page
+homeTitle = "dima23.blog" # Title for home page
 #poweredby = true # Adds powered by hugo and kiss below Copyright
-related = true # Includes related articles at the bottom of the article
+related = false # Includes related articles at the bottom of the article
 
 
 #[params.opengraph.facebook]
@@ -33,7 +33,7 @@ related = true # Includes related articles at the bottom of the article
 
 twitter = "dtri23"
 github = "dvogt23"
-email = "divogt@dima23.de"
+#email = ""
 #linkedin = "dima23"
 #facebook = "ribice"
 instagram = "dimav23"
