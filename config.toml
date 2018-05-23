@@ -8,7 +8,6 @@ googleAnalytics = ""
 # Number of posts per page
 Paginate = 5
 enableRobotsTXT = true
-publishDir = "docs"
 
 
 [params.assets]
