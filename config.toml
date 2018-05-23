@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "dima23.blog"
+title = "some notes."
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
@@ -19,11 +19,11 @@ pygmentsStyle = "vim" # other dark style options: vim, fruity, monokai
 # enable syntax highlight for code blocks
 pygmentsCodeFences = true
 
-#[[menu.main]]
-  #name = "Posts"
-  #weight = -120
-  #identifier = "post"
-  #url = "/post/"
+[[menu.main]]
+  name = "web"
+  weight = -120
+  identifier = "web"
+  url = "https://dima23.de"
 
 [[menu.main]]
   name = "tags"
@@ -35,11 +35,11 @@ pygmentsCodeFences = true
   keywords = "blog, tech, develop"
   description = "personal developer blog."
 
-[params]
-  github = "dvogt23"
+#[params]
+  #github = "dvogt23"
   #gitlab = "gitlab id"
-  twitter = "dtri23"
-  linkedin = "dimitri-vogt-096555155"
+  #twitter = "dtri23"
+  #linkedin = "dimitri-vogt-096555155"
   #email = "myemail"
 
 [params.colors]
