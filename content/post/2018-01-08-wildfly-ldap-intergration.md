@@ -6,6 +6,7 @@ tags = [
     "jboss",
     "ldap",
     "webserver",
+    "java",
 ]
 date = "2018-04-02"
 categories = [
