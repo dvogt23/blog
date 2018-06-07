@@ -31,6 +31,12 @@ pygmentsCodeFences = true
   identifier = "tag"
   url = "/tags/"
 
+[[menu.main]]
+  name = "rss"
+  weight = -100
+  identifier = "rss"
+  url = "/index.xml"
+
 [params.meta]
   keywords = "blog, tech, develop"
   description = "personal developer blog."
