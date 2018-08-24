@@ -162,7 +162,7 @@ default     arch
 # timeout   4
 editor      0
 ```
-Create the arch entrie in `boot/loaeder/netries/arch.conf`:
+Create the arch entrie in `boot/loader/netries/arch.conf`:
 ```
 title   Arch Linux Btrfs
 linux   /vmlinuz-linux

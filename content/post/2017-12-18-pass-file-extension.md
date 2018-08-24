@@ -26,6 +26,6 @@ cd pass-file
 sudo make install
 ```
 
-If you have i.e. a ssh key that you would have in your password-store, you could add it with `pass file add id_rsa MyServer/sss-key`.
+If you have i.e. a ssh key that you would have in your password-store, you could add it with `pass file add id_rsa MyServer/ssh-key`.
 
 All other informations about this extension are listed in the `man pass-file` page.
