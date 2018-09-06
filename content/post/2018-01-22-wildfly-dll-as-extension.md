@@ -17,7 +17,7 @@ categories = [
 A very difficult part of a wildfly instance is to use some DLL-files in your different java projects as dependency. If you choose the easy way and include the dll binary in your executable path of your wildfly instance, your war project will crash after an another project try to use the same dll binary. After that cognition you have to go the "hard" way. In this post you are on the right path...
 
 ### Create JNI project
-Create a new java project an include the dll library to your ressources
+Create a new java project and include the dll library to your resources
 ```java
 public class NativeLib {
     static {
@@ -36,7 +36,7 @@ public class NativeLib {
 
 }
 ```
-Create a jar file of this project and import it to your maven repository optionaly:
+Create a jar file of this project and import it to your maven repository optionally:
 ```bash
 mvn install:install-file -Dfile=nativelib-1.0-SNAPSHOT.jar -DgroupId=com.mygroup -DartifactId=nativelib -Dversion=1 -Dpackaging=jar
 ```
