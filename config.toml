@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "some notes."
+title = "blog.dima23"
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
@@ -38,10 +38,12 @@ pygmentsCodeFences = true
   url = "/index.xml"
 
 [params.meta]
-  keywords = "blog, tech, develop"
-  description = "personal developer blog."
+  keywords = "blog, tech, develop, software, coding"
+  description = "personal developer blog for some coding notes."
 
-#[params]
+[params]
+  pagetitle = "Some notes"
+  #firstline = "These posts are for my personal usage. Be careful if copy something."
   #github = "dvogt23"
   #gitlab = "gitlab id"
   #twitter = "dtri23"
@@ -55,3 +57,10 @@ pygmentsCodeFences = true
   text = "#dbdbdb"
   code-quote-bg = "#1D1F21" # background color for quotes and code blocks
   copyright = "#404040" # copyright text color
+
+enableRobotsTXT = true
+
+[sitemap]
+changefreq = "monthly"
+filename = "sitemap.xml"
+priority = 0.5
