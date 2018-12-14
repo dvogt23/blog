@@ -12,6 +12,9 @@ theme = "hugo-dusk"
 [author]
   name = "dvogt"
 
+[blackfriday]
+hrefTargetBlank = true
+
 SectionPagesMenu = "main"
 
 # use Chroma for syntax highlight
