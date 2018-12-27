@@ -71,6 +71,37 @@ To run this script automatically after user login, put this line to the
 [[ -e /tmp/shared ]] && ~/tmuxjoin
 ```
 
+***EDIT:***
+For sharing your current session, I modified the scripts as follows:
+
+***tmuxshare***
+```bash
+#!/usr/bin/env bash
+
+CURRENT=$(echo $TMUX | cut -f1 -d',')
+SESSION=$(echo $TMUX | cut -f3 -d',')
+
+if ! pgrep -x "sshd" > /dev/null
+then
+    echo "Start ssh daemon..." && sudo systemctl start sshd.service
+fi
+chgrp shared "$CURRENT"
+chgrp shared "$(dirname $CURRENT)"
+chmod 0770 -R "$(dirname $CURRENT)"
+echo "$CURRENT,$SESSION" > /tmp/shared.current
+```
+
+***tmuxjoin***
+```bash
+#!/usr/bin/env bash
+if [ -e /tmp/shared.current ]; then
+    SOCKET="$(cat /tmp/shared.current | cut -f1 -d',')"
+    SESSION="$(cat /tmp/shared.current | cut -f2 -d',')"
+    tmux -S "$SOCKET" attach -t "$SESSION"
+fi
+[[ -e /tmp/shared ]] && tmux -S /tmp/shared attach
+```
+
 #### Sources
 
 [1] [OpenSSH](https://www.openssh.com)  
