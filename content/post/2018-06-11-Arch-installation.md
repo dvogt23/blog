@@ -159,7 +159,6 @@ Install the bootctl bootloader:
 Change the loader configuration in `/boot/loader/loader.conf` to:
 ```
 default     arch
-# timeout   4
 editor      0
 ```
 Create the arch entrie in `boot/loader/netries/arch.conf`:
