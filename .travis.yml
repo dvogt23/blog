@@ -28,6 +28,8 @@ deploy:
   target_branch: gh-pages
   provider: pages
   skip_cleanup: true
+  email: $GITHUB_EMAIL
+  name: $GITHUB_USERNAME
   github_token: $GITHUB_TOKEN
   on:
     branch: master

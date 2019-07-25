@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "blog.dima23"
+title = "blog📓"
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
@@ -26,7 +26,7 @@ pygmentsCodeFences = true
   name = "web"
   weight = -120
   identifier = "web"
-  url = "https://dima23.de"
+  url = "https://vogt.dev"
 
 [[menu.main]]
   name = "tags"
