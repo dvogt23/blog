@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <head>
+<meta charset="utf-8" />
+<meta name="author" content="dvogt" />
+<meta name="description" content="personal developer blog for some coding notes." />
+<meta name="keywords" content="blog, tech, develop, software, coding" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.56.3" />
+
+<link rel="canonical" href="/post/2018-06-11-arch-installation/">
+<base href="/" />
+<meta property="og:title" content="Arch installation" />
+<meta property="og:description" content="Some notes to my arch installation: uefi, btrfs, ecryptfs, i3, polybar, ..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2018-06-11-arch-installation/" />
+<meta property="article:published_time" content="2018-06-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-06-11T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Arch installation"/>
+<meta name="twitter:description" content="Some notes to my arch installation: uefi, btrfs, ecryptfs, i3, polybar, ..."/>
+
+
+<meta itemprop="name" content="Arch installation">
+<meta itemprop="description" content="Some notes to my arch installation: uefi, btrfs, ecryptfs, i3, polybar, ...">
+
+
+<meta itemprop="datePublished" content="2018-06-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-06-11T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="621">
+
+
+
+<meta itemprop="keywords" content="arch,linux,btrfs,i3,polybar," />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/syntax.css" />
+<style type="text/css">
+body {
+  background-color: #202020;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #1D1F21;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #1D1F21;
+}
+
+blockquote {
+  background: #1D1F21;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #202020;
+}
+
+.siteTitle a { color: #B3B6B7; }
+
+.post .content h1{ color: #B3B6B7; }
+.post .content h2{ color: #B3B6B7; }
+.post .content h3{ color: #B3B6B7; }
+.post .content h4{ color: #B3B6B7; }
+.post .content h5{ color: #B3B6B7; }
+.post .content h6{ color: #B3B6B7; }
+.post .content a:hover { color: #B3B6B7; }
+.social-link:hover { color: #B3B6B7; }
+.nav-item-title:hover { color: #B3B6B7; }
+.tag a:hover { color: #B3B6B7; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #B3B6B7; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #B3B6B7;
+}
+.post-list .title { color: #B3B6B7; }
+.rmore { color: #B3B6B7; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #B3B6B7;
+}
+
+</style>
+
+
+
+<title>
+
+
+     Arch installation 
+
+</title>
+
+</head>
+
+
+    <body>
+        <div class="main">
+            <header>
+
+                <div class="header-bar">
+
+                    <nav>
+                        <div class="siteTitle">
+                            <a href="/">blog📓</a>
+                        </div> 
+
+                        
+                        
+                        <a class="nav-item" href="https://vogt.dev"><div class="nav-item-title">web</div></a>
+                        
+                        <a class="nav-item" href="/tags/"><div class="nav-item-title">tags</div></a>
+                        
+                        <a class="nav-item" href="/index.xml"><div class="nav-item-title">rss</div></a>
+                        
+
+                    </nav>
+                </div>
+
+                
+<div class="social-links-header">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+
+            </header>
+
+
+<article class="post">
+    <h1 class="title"> Arch installation </h1>
+    <p class="description"> Some notes to my arch installation: uefi, btrfs, ecryptfs, i3, polybar, ... </p>
+    <div class="content"> 
+
+<p>I was a long time a macbook fanboy. After some wired news about apples macOS, some bugs and so on, I had decide to switch to arch-linux. The os that I use already at work, and I&rsquo;m very happy with that. So, after this decision i sold macbook and bought a dell xps 13 9370. Now I&rsquo;m writing this post on my new xps with arch.</p>
+
+<h3 id="usb-drive">USB drive</h3>
+
+<p>Create a bootable usb drive with a arch iso (for beginner: antergos live iso):</p>
+
+<pre><code>sudo dd bs=4M if=/path/to/archlinux.iso of=/dev/sdX status=progress &amp;&amp; sync
+</code></pre>
+
+<p>Boot the usb drive in efi mode and verify that with <code>efivar -l</code></p>
+
+<h3 id="partitioning-disk">Partitioning disk</h3>
+
+<p>Show your disk with <code>lsblk</code> and start the partitioning with <code>gdisk /dev/sdX</code></p>
+
+<pre><code>GPT fdisk
+Command: o
+This option delets all partitions and creates a new protective MBR.
+Proceed? (Y/N): y
+</code></pre>
+
+<p>Efi partition</p>
+
+<pre><code>Command: n
+Partition number (1-128, default 1):
+First sector:
+Last sector: +250M
+Current type is 'Linux filesystem'
+Hex code on GUID: ef00
+</code></pre>
+
+<p>Root filesystem</p>
+
+<pre><code>Command: n
+Partition number (1-128, default 2):
+First sector:
+Last sector: +185G
+Current type is 'Linux filesystem'
+Hex code on GUID (Enter = 8300): 
+</code></pre>
+
+<p>Swap partition</p>
+
+<pre><code>Command: n
+Partition number (1-128, default 3):
+First sector:
+Last sector: 
+Current type is 'Linux filesystem'
+Hex code on GUID (Enter = 8300): 8200
+</code></pre>
+
+<p>Show the configuration with <code>p</code> in gdisk menu.</p>
+
+<pre><code>Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          514047   250.0 MiB   EF00  EFI System
+   2          514048       388487167   185.0 GiB   8300  Linux filesystem
+   3       388487168       410007551   10.3 GiB    8200  Linux swap
+</code></pre>
+
+<p>To save this partitions, press <code>w</code> and confirm with <code>y</code></p>
+
+<p>Create the filesystems with the following commands:</p>
+
+<pre><code># mkfs.vfat -F 32 -n EFI /dev/sdX1
+# mkfs.btrfs -f -L ROOT /dev/sdX2 /dev/sdX
+# mkswap -L SWAP /dev/sdX3
+# swapon /dev/sdX3
+</code></pre>
+
+<p>Create btrfs subvolumes on the data partition:</p>
+
+<pre><code># mount /dev/sdX2 /mnt
+# cd /mnt
+# btrfs sub create @
+# btrfs sub create @home
+# btrfs sub create @pkg
+# btrfs sub create @snapshots
+# ls
+@ @home @pkg @snapshots
+# cd
+# umount /mnt
+</code></pre>
+
+<p>Mount btrfs subvolumes</p>
+
+<pre><code># mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ /dev/sdX2 /mnt
+# mkdir -p /mnt/boot
+# mkdir -p /mnt/home
+# mkdir -p /mnt/var/cache/pacman/pkg
+# mkdir -p /mnt/.snapshots
+# mkdir -p /mnt/btrfs
+# mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home /dev/sdX2 /mnt/home
+# mount -o noatime,compress=lzo,space_cache,ssd,subvol=@pkg /dev/sdX2 /mnt/var/cache/pacman/pkg
+# mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sdX2 /mnt/.snapshots
+# mount /dev/sdX1 /mnt/boot
+# mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5 /dev/sdX2 /mnt/btrfs
+</code></pre>
+
+<p>Show all the configurations with <code>df -Th</code></p>
+
+<pre><code>Filesystem          Type      Size  Used Avail Use% Mounted on
+[...]
+/dev/sdX2      btrfs     185G   25G  161G  14% /btrfs
+/dev/sdX2      btrfs     185G   25G  161G  14% /.snapshots
+/dev/sdX2      btrfs     185G   25G  161G  14% /var/cache/pacman/pkg
+/dev/sdX2      btrfs     185G   25G  161G  14% /home
+/dev/sdX1      vfat      247M   58M  190M  24% /boot
+</code></pre>
+
+<h3 id="arch-installation">Arch installation</h3>
+
+<p>Install arch on the mounted partitions:</p>
+
+<pre><code>pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion wpa_supplicant dialog
+</code></pre>
+
+<p>Create <code>fstab</code> with <code>genfstag -Lp /mnt &gt; /mnt/etc/fstab</code> and check it with <code>cat /mnt/etc/fstab</code></p>
+
+<p>Change root to your arch system with <code>arch-chroot /mnt</code> and do some configurations:</p>
+
+<pre><code># echo myhost &gt; /etc/hostname
+# echo LANG=de_DE.UTF-8 &gt; /etc/locale.conf
+# vi /etc/locale.gen
+# locale-gen
+# echo KEYMAP=de-latin1 &gt; /etc/vconsole.conf
+# ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+</code></pre>
+
+<p>Change some kernel parameters for btrfs in your <code>/etc/mkinitcpio.conf</code>:</p>
+
+<pre><code>[...]
+MODULES=(vfat btrfs)
+[...]
+HOOKS=(base udev autodetect modconf block btrfs filesystems keyboard)
+[...]
+</code></pre>
+
+<p>and recreate your kernel with <code>mkinitcpio -p linux</code></p>
+
+<p>Set root password with <code>passwd</code></p>
+
+<p>Install the bootctl bootloader:</p>
+
+<pre><code># bootctl --path=/boot install
+</code></pre>
+
+<p>Change the loader configuration in <code>/boot/loader/loader.conf</code> to:</p>
+
+<pre><code>default     arch
+editor      0
+</code></pre>
+
+<p>Create the arch entrie in <code>boot/loader/netries/arch.conf</code>:</p>
+
+<pre><code>title   Arch Linux Btrfs
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options root=LABEL=ROOT rootflags=subvol=@ rw
+</code></pre>
+
+<p>Optional: Cleaning up efi entries with <code>efibootmgr -b 2 -B</code> (ex. delete entrie 2)</p>
+
+<p>Install the last packages before reboot: <code>pacman -Syu &amp;&amp; pacman -S xorg-server xorg-init</code></p>
+
+<h4 id="sources">Sources</h4>
+
+<p><a href="https://www.youtube.com/watch?v=oT7gs2CmsnQ" target="_blank">unicks.eu - Arch my way</a><br />
+<a href="https://gist.github.com/tadly/0e65d30f279a34c33e9b" target="_blank">tadly/pacaur_install.sh</a>
+<a href="https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/" target="_blank">gloriouseggroll</a></p>
+ </div>
+    <footer class="post-footer">
+
+Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&amp;title=Page: Arch%20installation " target="_BLANK">comment</a>
+
+</footer>
+
+
+  
+
+
+</article>
+
+  <footer>
+
+  <div class="copyright"> © dima 2018 </div>
+
+  <div class="poweredby">
+      <a href="https://gohugo.io/" target="_BLANK">hugo</a>/<a href="https://github.com/gyorb/hugo-dusk" target="_BLANK">hugo-dusk</a>
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

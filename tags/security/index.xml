@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on blog📓</title>
+    <link>/tags/security/</link>
+    <description>Recent content in security on blog📓</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>© dima 2018</copyright>
+    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create a perfect pgp key</title>
+      <link>/post/2018-06-12-create-a-perfect-pgp-key/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-06-12-create-a-perfect-pgp-key/</guid>
+      <description>Maybe I already said that I&amp;rsquo;m a big fan of pass. A small unix tool (bash-script) for managing passwords with a pgp-key. In this note I collected some introductions for a best practise.
+I&#39;m not a profession or a security expert. All this information are for my own use.
+The goals in this post are create a pgp master key with multiple id and a subkey.
+GPG config At first, some gpg config stuff here.</description>
+    </item>
+    
+    <item>
+      <title>Passwordstore extension: pass-file</title>
+      <link>/post/2017-12-18-pass-file-extension/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017-12-18-pass-file-extension/</guid>
+      <description>I am a big fan of the unix password-store, one of that which I used every day. And the best of it, thats only a bash script.
+After some years of using keepass in a Dropbox and a keyfile on usb storage, I find this some little tool. It&amp;rsquo;s absolutly perfect, cause I am a big fan of CLI apps, too :). On the mobile way I use the open source app for iOS, thats a really good addition.</description>
+    </item>
+    
+  </channel>
+</rss>

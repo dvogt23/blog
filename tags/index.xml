@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on blog📓</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on blog📓</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>© dima 2018</copyright>
+    <lastBuildDate>Tue, 11 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>development</title>
+      <link>/tags/development/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pair-programming</title>
+      <link>/tags/pair-programming/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pair-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>/tags/programming/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>/tags/ssh/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>/tags/tmux/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pgp</title>
+      <link>/tags/pgp/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pgp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>/tags/security/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arch</title>
+      <link>/tags/arch/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/arch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>btrfs</title>
+      <link>/tags/btrfs/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/btrfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>i3</title>
+      <link>/tags/i3/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/i3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>polybar</title>
+      <link>/tags/polybar/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/polybar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>/tags/java/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jboss</title>
+      <link>/tags/jboss/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/jboss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ldap</title>
+      <link>/tags/ldap/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ldap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webserver</title>
+      <link>/tags/webserver/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/webserver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wildfly</title>
+      <link>/tags/wildfly/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/wildfly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>extension</title>
+      <link>/tags/extension/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/extension/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gpg</title>
+      <link>/tags/gpg/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/gpg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pass</title>
+      <link>/tags/pass/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>password-store</title>
+      <link>/tags/password-store/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/password-store/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
