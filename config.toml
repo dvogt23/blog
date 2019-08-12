@@ -3,7 +3,7 @@ title = "blog📓"
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
-paginate = 5
+paginate = 10
 theme = "hugo-dusk"
 
 #googleAnalytics = ""
