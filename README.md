@@ -1,3 +1,3 @@
 # blog
 
-some memories...
+Some short technical notes.
