@@ -1,280 +1,125 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
-    <head>
-<meta charset="utf-8" />
-<meta name="author" content="dvogt" />
-<meta name="description" content="personal developer blog for some coding notes." />
-<meta name="keywords" content="blog, tech, develop, software, coding" />
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.56.3" />
-
-<link rel="canonical" href="/post/2018-01-22-wildfly-dll-as-extension/">
-<base href="/" />
-<meta property="og:title" content="Wildfly DLL as extension" />
-<meta property="og:description" content="Add a DLL lib as extension to wildfly server" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/2018-01-22-wildfly-dll-as-extension/" />
-<meta property="article:published_time" content="2018-01-08T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-01-08T00:00:00+00:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Wildfly DLL as extension"/>
-<meta name="twitter:description" content="Add a DLL lib as extension to wildfly server"/>
-
-
-<meta itemprop="name" content="Wildfly DLL as extension">
-<meta itemprop="description" content="Add a DLL lib as extension to wildfly server">
-
-
-<meta itemprop="datePublished" content="2018-01-08T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-01-08T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="274">
-
-
-
-<meta itemprop="keywords" content="wildfly,jboss,extension,webserver,java," />
-
-
-<link rel="stylesheet" href="css/layout.css" />
-<link rel="stylesheet" href="css/syntax.css" />
-<style type="text/css">
-body {
-  background-color: #202020;
-  color: #dbdbdb;
-}
-
-a { color: #dbdbdb; }
-
-pre {
-  background: #1D1F21;
-  border: 1px solid #dbdbdb;
-  border-radius: 5px;
-}
-
-code {
-  background: #1D1F21;
-}
-
-blockquote {
-  background: #1D1F21;
-  border-left: 3px solid #dbdbdb;
-}
-
-table {
-  margin: 1em auto;
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid #dbdbdb;
-}
-
-th {
-  background: #dbdbdb;
-  color: #202020;
-}
-
-.siteTitle a { color: #B3B6B7; }
-
-.post .content h1{ color: #B3B6B7; }
-.post .content h2{ color: #B3B6B7; }
-.post .content h3{ color: #B3B6B7; }
-.post .content h4{ color: #B3B6B7; }
-.post .content h5{ color: #B3B6B7; }
-.post .content h6{ color: #B3B6B7; }
-.post .content a:hover { color: #B3B6B7; }
-.social-link:hover { color: #B3B6B7; }
-.nav-item-title:hover { color: #B3B6B7; }
-.tag a:hover { color: #B3B6B7; }
-.copyright { color: #404040 }
-.poweredby { color: #404040 }
-.poweredby a { color: #404040; }
-.post-preview .title a{ color: #B3B6B7; }
-.content-item a:hover{
-  text-decoration: underline;
-  color: #B3B6B7;
-}
-.post-list .title { color: #B3B6B7; }
-.rmore { color: #B3B6B7; }
-.terms .term a:hover {
-  text-decoration: underline;
-  color: #B3B6B7;
-}
-
-</style>
-
-
-
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=author content="dvogt">
+<meta name=description content="personal developer blog for some coding notes.">
+<meta name=keywords content="blog,tech,develop,software,coding">
+<meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<link rel=canonical href=/post/2018-01-22-wildfly-dll-as-extension/>
+<base href=/>
+<meta property="og:title" content="Wildfly DLL as extension">
+<meta property="og:description" content="Add a DLL lib as extension to wildfly server">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/post/2018-01-22-wildfly-dll-as-extension/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2018-01-08T00:00:00+00:00">
+<meta property="article:modified_time" content="2018-01-08T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Wildfly DLL as extension">
+<meta name=twitter:description content="Add a DLL lib as extension to wildfly server">
+<meta itemprop=name content="Wildfly DLL as extension">
+<meta itemprop=description content="Add a DLL lib as extension to wildfly server"><meta itemprop=datePublished content="2018-01-08T00:00:00+00:00">
+<meta itemprop=dateModified content="2018-01-08T00:00:00+00:00">
+<meta itemprop=wordCount content="274">
+<meta itemprop=keywords content="wildfly,jboss,extension,webserver,java,">
+<link rel=stylesheet href=css/layout.css>
+<link rel=stylesheet href=css/syntax.css>
+<style type=text/css>body{background-color:#202020;color:#dbdbdb}a{color:#dbdbdb}pre{background:#1d1f21;border:1px solid #dbdbdb;border-radius:5px}code{background:#1d1f21}blockquote{background:#1d1f21;border-left:3px solid #dbdbdb}table{margin:1em auto;border-collapse:collapse}table,th,td{border:1px solid #dbdbdb}th{background:#dbdbdb;color:#202020}.siteTitle a{color:#b3b6b7}.post .content h1{color:#b3b6b7}.post .content h2{color:#b3b6b7}.post .content h3{color:#b3b6b7}.post .content h4{color:#b3b6b7}.post .content h5{color:#b3b6b7}.post .content h6{color:#b3b6b7}.post .content a:hover{color:#b3b6b7}.social-link:hover{color:#b3b6b7}.nav-item-title:hover{color:#b3b6b7}.tag a:hover{color:#b3b6b7}.copyright{color:#404040}.poweredby{color:#404040}.poweredby a{color:#404040}.post-preview .title a{color:#b3b6b7}.content-item a:hover{text-decoration:underline;color:#b3b6b7}.post-list .title{color:#b3b6b7}.rmore{color:#b3b6b7}.terms .term a:hover{text-decoration:underline;color:#b3b6b7}</style>
 <title>
-
-
-     Wildfly DLL as extension 
-
+Wildfly DLL as extension
 </title>
-
 </head>
-
-
-    <body>
-        <div class="main">
-            <header>
-
-                <div class="header-bar">
-
-                    <nav>
-                        <div class="siteTitle">
-                            <a href="/">blog📓</a>
-                        </div> 
-
-                        
-                        
-                        <a class="nav-item" href="https://vogt.dev"><div class="nav-item-title">web</div></a>
-                        
-                        <a class="nav-item" href="/tags/"><div class="nav-item-title">tags</div></a>
-                        
-                        <a class="nav-item" href="/index.xml"><div class="nav-item-title">rss</div></a>
-                        
-
-                    </nav>
-                </div>
-
-                
-<div class="social-links-header">
-
-  
-
-  
-
-  
-
-  
-
-  
-
+<body>
+<div class=main>
+<header>
+<div class=header-bar>
+<nav>
+<div class=siteTitle>
+<a href=/>blog📓</a>
 </div>
-
-
-            </header>
-
-
-<article class="post">
-    <h1 class="title"> Wildfly DLL as extension </h1>
-    <p class="description"> Add a DLL lib as extension to wildfly server </p>
-    <div class="content"> 
-
-<p>A very difficult part of a wildfly instance is to use some DLL-files in your different java projects as dependency. If you choose the easy way and include the dll binary in your executable path of your wildfly instance, your war project will crash after an another project try to use the same dll binary. After that cognition you have to go the &ldquo;hard&rdquo; way. In this post you are on the right path&hellip;</p>
-
-<h3 id="create-jni-project">Create JNI project</h3>
-
+<a class=nav-item href=https://vogt.dev><div class=nav-item-title>web</div></a>
+<a class=nav-item href=/tags/><div class=nav-item-title>tags</div></a>
+<a class=nav-item href=/index.xml><div class=nav-item-title>rss</div></a>
+</nav>
+</div>
+<div class=social-links-header>
+</div>
+</header>
+<article class=post>
+<h1 class=title> Wildfly DLL as extension </h1>
+<p class=description> Add a DLL lib as extension to wildfly server </p>
+<div class=content> <p>A very difficult part of a wildfly instance is to use some DLL-files in your different java projects as dependency. If you choose the easy way and include the dll binary in your executable path of your wildfly instance, your war project will crash after an another project try to use the same dll binary. After that cognition you have to go the &ldquo;hard&rdquo; way. In this post you are on the right path&mldr;</p>
+<h3 id=create-jni-project>Create JNI project</h3>
 <p>Create a new java project and include the dll library to your resources</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>NativeLib</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>static</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
 
-<pre><code class="language-java">public class NativeLib {
-    static {
-        try {
+            <span style=color:#75715e>// basename of mylib.dll (Windows)/mylib.so (Linux)
+</span><span style=color:#75715e></span>            System<span style=color:#f92672>.</span><span style=color:#a6e22e>loadLibrary</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;mylib&#34;</span><span style=color:#f92672>);</span> 
 
-            // basename of mylib.dll (Windows)/mylib.so (Linux)
-            System.loadLibrary(&quot;mylib&quot;); 
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>UnsatisfiedLinkError e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            e<span style=color:#f92672>.</span><span style=color:#a6e22e>printStackTrace</span><span style=color:#f92672>();</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
 
-        } catch (UnsatisfiedLinkError e) {
-            e.printStackTrace();
-        }
-    }
+    <span style=color:#75715e>// native method
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>native</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>helloWorld</span><span style=color:#f92672>();</span> 
 
-    // native method
-    public static native void helloWorld(); 
-
-}
-</code></pre>
-
-<p>Create a jar file of this project and import it to your maven repository optionally:</p>
-
-<pre><code class="language-bash">mvn install:install-file -Dfile=nativelib-1.0-SNAPSHOT.jar -DgroupId=com.mygroup -DartifactId=nativelib -Dversion=1 -Dpackaging=jar
-</code></pre>
-
-<h3 id="import-jar-as-wildfly-module">Import JAR as wildfly module</h3>
-
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Create a jar file of this project and import it to your maven repository optionally:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mvn install:install-file -Dfile<span style=color:#f92672>=</span>nativelib-1.0-SNAPSHOT.jar -DgroupId<span style=color:#f92672>=</span>com.mygroup -DartifactId<span style=color:#f92672>=</span>nativelib -Dversion<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> -Dpackaging<span style=color:#f92672>=</span>jar
+</code></pre></div><h3 id=import-jar-as-wildfly-module>Import JAR as wildfly module</h3>
 <p>Create a module folder in the <code>$JBOSS_HOME</code> dir and copy your JAR-file there:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p $JBOSS_HOME/modules/com/mygroup/nativelib/main
+</code></pre></div><p>Your DLL-File needs to be copied in the right dir <a href=https://jboss-modules.github.io/jboss-modules/manual/#native-libraries>[1]</a>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cp mylib.dll $JBOSS_HOME/modules/com/mygroup/nativelib/main/lib/win-x86_64
+</code></pre></div><p>Now, you have to create a <code>module.xml</code> file to register your module:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 
-<pre><code class="language-bash">mkdir -p $JBOSS_HOME/modules/com/mygroup/nativelib/main
-</code></pre>
+<span style=color:#f92672>&lt;module</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;urn:jboss:module:1.3&#34;</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;com.mygroup.mylib&#34;</span><span style=color:#f92672>&gt;</span>
+  <span style=color:#f92672>&lt;main-class</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;com.mygroup.mylib&#34;</span><span style=color:#f92672>/&gt;</span>
 
-<p>Your DLL-File needs to be copied in the right dir <a href="https://jboss-modules.github.io/jboss-modules/manual/#native-libraries" target="_blank">[1]</a>:</p>
+    <span style=color:#f92672>&lt;resources&gt;</span>
+        <span style=color:#f92672>&lt;resource-root</span> <span style=color:#a6e22e>path=</span><span style=color:#e6db74>&#34;lib&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;resource-root</span> <span style=color:#a6e22e>path=</span><span style=color:#e6db74>&#34;nativelib.jar&#34;</span><span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;/resources&gt;</span>
 
-<pre><code class="language-bash">cp mylib.dll $JBOSS_HOME/modules/com/mygroup/nativelib/main/lib/win-x86_64
-</code></pre>
-
-<p>Now, you have to create a <code>module.xml</code> file to register your module:</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;module xmlns=&quot;urn:jboss:module:1.3&quot; name=&quot;com.mygroup.mylib&quot;&gt;
-  &lt;main-class name=&quot;com.mygroup.mylib&quot;/&gt;
-
-    &lt;resources&gt;
-        &lt;resource-root path=&quot;lib&quot;/&gt;
-        &lt;resource-root path=&quot;nativelib.jar&quot;/&gt;
-    &lt;/resources&gt;
-
-&lt;/module&gt;
-</code></pre>
-
-<h3 id="use-wildfly-module-in-war-project">Use wildfly module in war project</h3>
-
+<span style=color:#f92672>&lt;/module&gt;</span>
+</code></pre></div><h3 id=use-wildfly-module-in-war-project>Use wildfly module in war project</h3>
 <p>To use this wildfly module in your war project, you have to use the JNI-project in your project like as a maven dependency</p>
-
-<pre><code class="language-xml">[...]
-&lt;dependency&gt;
-   &lt;groupId&gt;com.mygroup&lt;/groupId&gt;
-   &lt;artifactId&gt;nativelib&lt;/artifactId&gt;
-   &lt;version&gt;1.0.0&lt;/version&gt;
-&lt;/dependency&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>[...]
+<span style=color:#f92672>&lt;dependency&gt;</span>
+   <span style=color:#f92672>&lt;groupId&gt;</span>com.mygroup<span style=color:#f92672>&lt;/groupId&gt;</span>
+   <span style=color:#f92672>&lt;artifactId&gt;</span>nativelib<span style=color:#f92672>&lt;/artifactId&gt;</span>
+   <span style=color:#f92672>&lt;version&gt;</span>1.0.0<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
 [...]
-</code></pre>
-
-<p>At last you have to add the dependency to your <code>MANIFEST.MF</code> file of your WAR-file. In maven i.e.:</p>
-
-<pre><code class="language-xml">&lt;plugin&gt;
-       &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-       &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
-       &lt;configuration&gt;
-           &lt;archive&gt;
-               &lt;manifestEntries&gt;
-                    &lt;Dependencies&gt;com.mygroup.nativelib&lt;/Dependencies&gt;
-               &lt;/manifestEntries&gt;
-           &lt;/archive&gt;
-       &lt;/configuration&gt;
-&lt;/plugin&gt;
-</code></pre>
-
-<h4 id="sources">Sources</h4>
-
-<p><a href="https://jboss-modules.github.io/jboss-modules/manual/#native-libraries" target="_blank">JBoss Modules</a></p>
- </div>
-    <footer class="post-footer">
-
-Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&amp;title=Page: Wildfly%20DLL%20as%20extension " target="_BLANK">comment</a>
-
+</code></pre></div><p>At last you have to add the dependency to your <code>MANIFEST.MF</code> file of your WAR-file. In maven i.e.:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;plugin&gt;</span>
+       <span style=color:#f92672>&lt;groupId&gt;</span>org.apache.maven.plugins<span style=color:#f92672>&lt;/groupId&gt;</span>
+       <span style=color:#f92672>&lt;artifactId&gt;</span>maven-war-plugin<span style=color:#f92672>&lt;/artifactId&gt;</span>
+       <span style=color:#f92672>&lt;configuration&gt;</span>
+           <span style=color:#f92672>&lt;archive&gt;</span>
+               <span style=color:#f92672>&lt;manifestEntries&gt;</span>
+                    <span style=color:#f92672>&lt;Dependencies&gt;</span>com.mygroup.nativelib<span style=color:#f92672>&lt;/Dependencies&gt;</span>
+               <span style=color:#f92672>&lt;/manifestEntries&gt;</span>
+           <span style=color:#f92672>&lt;/archive&gt;</span>
+       <span style=color:#f92672>&lt;/configuration&gt;</span>
+<span style=color:#f92672>&lt;/plugin&gt;</span>
+</code></pre></div><h4 id=sources>Sources</h4>
+<p><a href=https://jboss-modules.github.io/jboss-modules/manual/#native-libraries>JBoss Modules</a></p>
+</div>
+<footer class=post-footer>
+Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page: Wildfly%20DLL%20as%20extension" target=_blank>comment</a>
 </footer>
-
-
-  
-
-
 </article>
-
-  <footer>
-
-  <div class="copyright"> © dima 2018 </div>
-
-  <div class="poweredby">
-      <a href="https://gohugo.io/" target="_BLANK">hugo</a>/<a href="https://github.com/gyorb/hugo-dusk" target="_BLANK">hugo-dusk</a>
-  </div>
-
-  </footer>
-
-</div> 
-
+<footer>
+<div class=copyright> © dima 2018 </div>
+<div class=poweredby>
+<a href=https://gohugo.io/ target=_blank>hugo</a>/<a href=https://github.com/gyorb/hugo-dusk target=_blank>hugo-dusk</a>
+</div>
+</footer>
+</div>
 </body>
 </html>
-
