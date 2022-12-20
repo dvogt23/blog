@@ -1,62 +1,5 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
-<meta name=author content="dvogt">
-<meta name=description content="personal developer blog for some coding notes.">
-<meta name=keywords content="blog,tech,develop,software,coding">
-<meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name=generator content="Hugo 0.88.1">
-<link rel=canonical href=/post/2018-01-08-wildfly-ldap-intergration/>
-<base href=/>
-<meta property="og:title" content="Wildfly LDAP integration">
-<meta property="og:description" content="LDAP login possibility for wildfly server">
-<meta property="og:type" content="article">
-<meta property="og:url" content="/post/2018-01-08-wildfly-ldap-intergration/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2018-04-02T00:00:00+00:00">
-<meta property="article:modified_time" content="2018-04-02T00:00:00+00:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Wildfly LDAP integration">
-<meta name=twitter:description content="LDAP login possibility for wildfly server">
-<meta itemprop=name content="Wildfly LDAP integration">
-<meta itemprop=description content="LDAP login possibility for wildfly server"><meta itemprop=datePublished content="2018-04-02T00:00:00+00:00">
-<meta itemprop=dateModified content="2018-04-02T00:00:00+00:00">
-<meta itemprop=wordCount content="482">
-<meta itemprop=keywords content="wildfly,jboss,ldap,webserver,java,">
-<link rel=stylesheet href=css/layout.css>
-<link rel=stylesheet href=css/syntax.css>
-<style type=text/css>body{background-color:#202020;color:#dbdbdb}a{color:#dbdbdb}pre{background:#1d1f21;border:1px solid #dbdbdb;border-radius:5px}code{background:#1d1f21}blockquote{background:#1d1f21;border-left:3px solid #dbdbdb}table{margin:1em auto;border-collapse:collapse}table,th,td{border:1px solid #dbdbdb}th{background:#dbdbdb;color:#202020}.siteTitle a{color:#b3b6b7}.post .content h1{color:#b3b6b7}.post .content h2{color:#b3b6b7}.post .content h3{color:#b3b6b7}.post .content h4{color:#b3b6b7}.post .content h5{color:#b3b6b7}.post .content h6{color:#b3b6b7}.post .content a:hover{color:#b3b6b7}.social-link:hover{color:#b3b6b7}.nav-item-title:hover{color:#b3b6b7}.tag a:hover{color:#b3b6b7}.copyright{color:#404040}.poweredby{color:#404040}.poweredby a{color:#404040}.post-preview .title a{color:#b3b6b7}.content-item a:hover{text-decoration:underline;color:#b3b6b7}.post-list .title{color:#b3b6b7}.rmore{color:#b3b6b7}.terms .term a:hover{text-decoration:underline;color:#b3b6b7}</style>
-<script async defer data-website-id=aeec65b5-9542-46f0-bd03-fa96813535bb src=https://umami.vogt.dev/umami.js></script>
-<title>
-Wildfly LDAP integration
-</title>
-</head>
-<body>
-<div class=main>
-<header>
-<div class=header-bar>
-<nav>
-<div class=siteTitle>
-<a href=/>blog📓</a>
-</div>
-<a class=nav-item href=https://vogt.dev><div class=nav-item-title>web</div></a>
-<a class=nav-item href=/tags/><div class=nav-item-title>tags</div></a>
-<a class=nav-item href=/index.xml><div class=nav-item-title>rss</div></a>
-</nav>
-</div>
-<div class=social-links-header>
-</div>
-</header>
-<article class=post>
-<h1 class=title> Wildfly LDAP integration </h1>
-<p class=description> LDAP login possibility for wildfly server </p>
-<div class=content> <p>In the past, I spent a lot of time to figuring out, how to add the integrated LDAP module of the wildfly server. To do this, you have to take changes in some different places:</p>
-<h3 id=wildfly-server-side>Wildfly server side</h3>
-<h4 id=add-ldapextended-module-in-wildfly-configuration>Add &lsquo;LDAPExtended&rsquo; module in wildfly configuration</h4>
-<p>In the first place you have to add a module to your server configuration. Do it like this:
-<code>Wildfly admin console: Configuration -> Subsystems -> Security -> [Add] Name: "LDAPAuth"</code> this name will be connected in the <code>jboss-web.xml</code> file in your project.</p>
-<h4 id=add-some-configuration-parameters-to-this-module>Add some configuration parameters to this module</h4>
-<p><code>View</code> the module configuration and add the following parameters:</p>
-<pre tabindex=0><code>Name: LDAPAuth
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=author content="dvogt"><meta name=description content="personal developer blog for some coding notes."><meta name=keywords content="blog,tech,develop,software,coding"><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><link rel=canonical href=/post/2018-01-08-wildfly-ldap-intergration/><base href=/><meta property="og:title" content="Wildfly LDAP integration"><meta property="og:description" content="LDAP login possibility for wildfly server"><meta property="og:type" content="article"><meta property="og:url" content="/post/2018-01-08-wildfly-ldap-intergration/"><meta property="article:section" content="post"><meta property="article:published_time" content="2018-04-02T00:00:00+00:00"><meta property="article:modified_time" content="2018-04-02T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Wildfly LDAP integration"><meta name=twitter:description content="LDAP login possibility for wildfly server"><meta itemprop=name content="Wildfly LDAP integration"><meta itemprop=description content="LDAP login possibility for wildfly server"><meta itemprop=datePublished content="2018-04-02T00:00:00+00:00"><meta itemprop=dateModified content="2018-04-02T00:00:00+00:00"><meta itemprop=wordCount content="482"><meta itemprop=keywords content="wildfly,jboss,ldap,webserver,java,"><link rel=stylesheet href=css/layout.css><link rel=stylesheet href=css/syntax.css><style type=text/css>body{background-color:#202020;color:#dbdbdb}a{color:#dbdbdb}pre{background:#1d1f21;border:1px solid #dbdbdb;border-radius:5px}code{background:#1d1f21}blockquote{background:#1d1f21;border-left:3px solid #dbdbdb}table{margin:1em auto;border-collapse:collapse}table,th,td{border:1px solid #dbdbdb}th{background:#dbdbdb;color:#202020}.siteTitle a{color:#b3b6b7}.post .content h1{color:#b3b6b7}.post .content h2{color:#b3b6b7}.post .content h3{color:#b3b6b7}.post .content h4{color:#b3b6b7}.post .content h5{color:#b3b6b7}.post .content h6{color:#b3b6b7}.post .content a:hover{color:#b3b6b7}.social-link:hover{color:#b3b6b7}.nav-item-title:hover{color:#b3b6b7}.tag a:hover{color:#b3b6b7}.copyright{color:#404040}.poweredby{color:#404040}.poweredby a{color:#404040}.post-preview .title a{color:#b3b6b7}.content-item a:hover{text-decoration:underline;color:#b3b6b7}.post-list .title{color:#b3b6b7}.rmore{color:#b3b6b7}.terms .term a:hover{text-decoration:underline;color:#b3b6b7}</style><script async defer data-website-id=aeec65b5-9542-46f0-bd03-fa96813535bb src=https://umami.vogt.dev/umami.js></script><title>Wildfly LDAP integration</title></head><body><div class=main><header><div class=header-bar><nav><div class=siteTitle><a href=/>blog</a></div><a class=nav-item href=https://vogt.dev><div class=nav-item-title>web</div></a><a class=nav-item href=/tags/><div class=nav-item-title>tags</div></a><a class=nav-item href=/index.xml><div class=nav-item-title>rss</div></a></nav></div><div class=social-links-header></div></header><article class=post><h1 class=title>Wildfly LDAP integration</h1><p class=description>LDAP login possibility for wildfly server</p><div class=content><p>In the past, I spent a lot of time to figuring out, how to add the integrated LDAP module of the wildfly server. To do this, you have to take changes in some different places:</p><h3 id=wildfly-server-side>Wildfly server side</h3><h4 id=add-ldapextended-module-in-wildfly-configuration>Add &lsquo;LDAPExtended&rsquo; module in wildfly configuration</h4><p>In the first place you have to add a module to your server configuration. Do it like this:
+<code>Wildfly admin console: Configuration -> Subsystems -> Security -> [Add] Name: "LDAPAuth"</code> this name will be connected in the <code>jboss-web.xml</code> file in your project.</p><h4 id=add-some-configuration-parameters-to-this-module>Add some configuration parameters to this module</h4><p><code>View</code> the module configuration and add the following parameters:</p><pre tabindex=0><code>Name: LDAPAuth
 Code: LdapExtended
 Flag: required
 Module:
@@ -76,66 +19,57 @@ distinguishedNameAttribute=distinguishedname
 roleAttributeIsDN=true
 roleNameAttributeID=cn
 roleRecursion=1
-</code></pre><p><strong>Hint:</strong> the module options will be hidden after you submit this to your module</p>
-<p>After a reload of the server runtime, you must have some similiar in your <code>$JBOS_HOME/standalone/configuration/standalone.xml</code> file:</p>
-<pre tabindex=0><code> &lt;subsystem xmlns=&quot;urn:jboss:domain:security:1.2&quot;&gt;
+</code></pre><p><strong>Hint:</strong> the module options will be hidden after you submit this to your module</p><p>After a reload of the server runtime, you must have some similiar in your <code>$JBOS_HOME/standalone/configuration/standalone.xml</code> file:</p><pre tabindex=0><code> &lt;subsystem xmlns=&#34;urn:jboss:domain:security:1.2&#34;&gt;
             &lt;security-domains&gt;
             [...]
-                &lt;security-domain name=&quot;LDAPAuth&quot; cache-type=&quot;default&quot;&gt;
+                &lt;security-domain name=&#34;LDAPAuth&#34; cache-type=&#34;default&#34;&gt;
                     &lt;authentication&gt;
-                        &lt;login-module name=&quot;LDAPAuth&quot; code=&quot;LdapExtended&quot; flag=&quot;required&quot;&gt;
-                            &lt;module-option name=&quot;java.naming.factory.initial&quot; value=&quot;com.sun.jndi.ldap.LdapCtxFactory&quot;/&gt;
-                            &lt;module-option name=&quot;java.naming.provider.url&quot; value=&quot;ldap://ldapserver:389&quot;/&gt;
-                            &lt;module-option name=&quot;bindDN&quot; value=&quot;CN=Testuser,OU=Groupes,DC=domain,DC=net&quot;/&gt;
-                            &lt;module-option name=&quot;bindCredential&quot; value=&quot;password&quot;/&gt;
-                            &lt;module-option name=&quot;baseCtxDN&quot; value=&quot;dc=domain,dc=net&quot;/&gt;
-                            &lt;module-option name=&quot;rolesCtxDN&quot; value=&quot;OU=Groupes,DC=domain,DC=net&quot;/&gt;
-                            &lt;module-option name=&quot;roleFilter&quot; value=&quot;(member={1})&quot;/&gt;
-                            &lt;module-option name=&quot;roleAttributeID&quot; value=&quot;memberOf&quot;/&gt;
-                            &lt;module-option name=&quot;baseFilter&quot; value=&quot;(sAMAccountName={0})&quot;/&gt;
-                            &lt;module-option name=&quot;throwValidateError&quot; value=&quot;true&quot;/&gt;
-                            &lt;module-option name=&quot;searchScope&quot; value=&quot;SUBTREE_SCOPE&quot;/&gt;
-                            &lt;module-option name=&quot;distinguishedNameAttribute&quot; value=&quot;distinguishedname&quot;/&gt;
-                            &lt;module-option name=&quot;roleAttributeIsDN&quot; value=&quot;true&quot;/&gt;
-                            &lt;module-option name=&quot;roleNameAttributeID&quot; value=&quot;cn&quot;/&gt;
-                            &lt;module-option name=&quot;roleRecursion&quot; value=&quot;1&quot;/&gt;
+                        &lt;login-module name=&#34;LDAPAuth&#34; code=&#34;LdapExtended&#34; flag=&#34;required&#34;&gt;
+                            &lt;module-option name=&#34;java.naming.factory.initial&#34; value=&#34;com.sun.jndi.ldap.LdapCtxFactory&#34;/&gt;
+                            &lt;module-option name=&#34;java.naming.provider.url&#34; value=&#34;ldap://ldapserver:389&#34;/&gt;
+                            &lt;module-option name=&#34;bindDN&#34; value=&#34;CN=Testuser,OU=Groupes,DC=domain,DC=net&#34;/&gt;
+                            &lt;module-option name=&#34;bindCredential&#34; value=&#34;password&#34;/&gt;
+                            &lt;module-option name=&#34;baseCtxDN&#34; value=&#34;dc=domain,dc=net&#34;/&gt;
+                            &lt;module-option name=&#34;rolesCtxDN&#34; value=&#34;OU=Groupes,DC=domain,DC=net&#34;/&gt;
+                            &lt;module-option name=&#34;roleFilter&#34; value=&#34;(member={1})&#34;/&gt;
+                            &lt;module-option name=&#34;roleAttributeID&#34; value=&#34;memberOf&#34;/&gt;
+                            &lt;module-option name=&#34;baseFilter&#34; value=&#34;(sAMAccountName={0})&#34;/&gt;
+                            &lt;module-option name=&#34;throwValidateError&#34; value=&#34;true&#34;/&gt;
+                            &lt;module-option name=&#34;searchScope&#34; value=&#34;SUBTREE_SCOPE&#34;/&gt;
+                            &lt;module-option name=&#34;distinguishedNameAttribute&#34; value=&#34;distinguishedname&#34;/&gt;
+                            &lt;module-option name=&#34;roleAttributeIsDN&#34; value=&#34;true&#34;/&gt;
+                            &lt;module-option name=&#34;roleNameAttributeID&#34; value=&#34;cn&#34;/&gt;
+                            &lt;module-option name=&#34;roleRecursion&#34; value=&#34;1&#34;/&gt;
                         &lt;/login-module&gt;
                     &lt;/authentication&gt;
                 &lt;/security-domain&gt;
-                &lt;security-domain name=&quot;test2322&quot; cache-type=&quot;default&quot;/&gt;
+                &lt;security-domain name=&#34;test2322&#34; cache-type=&#34;default&#34;/&gt;
             &lt;/security-domains&gt;
         &lt;/subsystem&gt;
-</code></pre><h3 id=project-environment>Project environment</h3>
-<h4 id=add-a-jboss-webxml-file-with-a-connection-to-the-wildfly-module-in-your-project>Add a &lsquo;jboss-web.xml&rsquo; file with a connection to the wildfly module in your project</h4>
-<p>To connect your application to the ldap module you have to add your wildfly server, add a <code>jboss-web.xml</code> file to your <code>WEB-INF</code> dir:</p>
-<pre tabindex=0><code>&lt;jboss-web&gt;
+</code></pre><h3 id=project-environment>Project environment</h3><h4 id=add-a-jboss-webxml-file-with-a-connection-to-the-wildfly-module-in-your-project>Add a &lsquo;jboss-web.xml&rsquo; file with a connection to the wildfly module in your project</h4><p>To connect your application to the ldap module you have to add your wildfly server, add a <code>jboss-web.xml</code> file to your <code>WEB-INF</code> dir:</p><pre tabindex=0><code>&lt;jboss-web&gt;
     &lt;security-domain&gt;java:/jaas/LDAPAuth&lt;/security-domain&gt;
 &lt;/jboss-web&gt;
-</code></pre><h4 id=add-a-login-page-in-jsp-format-with-a-post-request-included-the-username-and-password-for-ldap-authentication>Add a login page in &lsquo;.jsp&rsquo; format with a POST request included the username and password for ldap authentication</h4>
-<p>For a form like authentication method, you have to create some <code>jsp</code> files in <code>html</code> format to authenticate a user to the wildfly ldap module. Add this <code>login.jsp</code> file to your <code>WEBAPP</code> dir.</p>
-<pre tabindex=0><code>&lt;form class=&quot;col s12&quot; method=&quot;post&quot; action=&quot;j_security_check&quot;&gt;
-    &lt;div class='row'&gt;
-        &lt;div class='input-field col s12'&gt;
-            &lt;input type='text' name='j_username' id='j_username' placeholder=&quot;Username&quot; /&gt;
+</code></pre><h4 id=add-a-login-page-in-jsp-format-with-a-post-request-included-the-username-and-password-for-ldap-authentication>Add a login page in &lsquo;.jsp&rsquo; format with a POST request included the username and password for ldap authentication</h4><p>For a form like authentication method, you have to create some <code>jsp</code> files in <code>html</code> format to authenticate a user to the wildfly ldap module. Add this <code>login.jsp</code> file to your <code>WEBAPP</code> dir.</p><pre tabindex=0><code>&lt;form class=&#34;col s12&#34; method=&#34;post&#34; action=&#34;j_security_check&#34;&gt;
+    &lt;div class=&#39;row&#39;&gt;
+        &lt;div class=&#39;input-field col s12&#39;&gt;
+            &lt;input type=&#39;text&#39; name=&#39;j_username&#39; id=&#39;j_username&#39; placeholder=&#34;Username&#34; /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;div class='row'&gt;
-        &lt;div class='input-field col s12'&gt;
-            &lt;input type='password' name='j_password' id='j_password' placeholder=&quot;Password&quot; /&gt;
+    &lt;div class=&#39;row&#39;&gt;
+        &lt;div class=&#39;input-field col s12&#39;&gt;
+            &lt;input type=&#39;password&#39; name=&#39;j_password&#39; id=&#39;j_password&#39; placeholder=&#34;Password&#34; /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;br /&gt;
     &lt;center&gt;
-        &lt;div class='row'&gt;
-            &lt;button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect red'&gt;Login&lt;/button&gt;
+        &lt;div class=&#39;row&#39;&gt;
+            &lt;button type=&#39;submit&#39; name=&#39;btn_login&#39; class=&#39;col s12 btn btn-large waves-effect red&#39;&gt;Login&lt;/button&gt;
         &lt;/div&gt;
     &lt;/center&gt;
 &lt;/form&gt;
-</code></pre><h4 id=add-a-webxml-to-your-project-if-not-exist-with-some-security-contraints-like-ldap-group>Add a &lsquo;web.xml&rsquo; to your project, if not exist, with some security contraints, like ldap group</h4>
-<p>To define some security constraints you have to add/create a <code>web.xml</code> file in your <code>WEB-INF</code> dir of your project with an similiar content:</p>
-<pre tabindex=0><code>&lt;security-constraint&gt;
+</code></pre><h4 id=add-a-webxml-to-your-project-if-not-exist-with-some-security-contraints-like-ldap-group>Add a &lsquo;web.xml&rsquo; to your project, if not exist, with some security contraints, like ldap group</h4><p>To define some security constraints you have to add/create a <code>web.xml</code> file in your <code>WEB-INF</code> dir of your project with an similiar content:</p><pre tabindex=0><code>&lt;security-constraint&gt;
     &lt;display-name&gt;Login Form&lt;/display-name&gt;
     &lt;web-resource-collection&gt;
         &lt;web-resource-name&gt;HTML-Auth&lt;/web-resource-name&gt;
@@ -179,21 +113,6 @@ roleRecursion=1
 &lt;security-role&gt;
     &lt;role-name&gt;LDAPGroup&lt;/role-name&gt;
 &lt;/security-role&gt;
-</code></pre><h4 id=get-user-principal-of-ldap-authorization>Get user principal of ldap authorization</h4>
-<p>After all this configuration and a successfully login of a user, you could get the username from the <code>vaadinRequest</code> in your <code>UI</code> like (kotlin):</p>
-<pre tabindex=0><code>   override fun init(vaadinRequest: VaadinRequest) {
+</code></pre><h4 id=get-user-principal-of-ldap-authorization>Get user principal of ldap authorization</h4><p>After all this configuration and a successfully login of a user, you could get the username from the <code>vaadinRequest</code> in your <code>UI</code> like (kotlin):</p><pre tabindex=0><code>   override fun init(vaadinRequest: VaadinRequest) {
         vaadinRequest.userPrincipal.name
-</code></pre> </div>
-<footer class=post-footer>
-Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page: Wildfly%20LDAP%20integration" target=_blank>comment</a>
-</footer>
-</article>
-<footer>
-<div class=copyright> © dima 2018 </div>
-<div class=poweredby>
-<a href=https://gohugo.io/ target=_blank>hugo</a>/<a href=https://github.com/gyorb/hugo-dusk target=_blank>hugo-dusk</a>
-</div>
-</footer>
-</div>
-</body>
-</html>
+</code></pre></div><footer class=post-footer>Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page: Wildfly%20LDAP%20integration" target=_blank>comment</a></footer></article><footer><div class=copyright>© dima 2018</div><div class=poweredby><a href=https://gohugo.io/ target=_blank>hugo</a>/<a href=https://github.com/gyorb/hugo-dusk target=_blank>hugo-dusk</a></div></footer></div></body></html>
