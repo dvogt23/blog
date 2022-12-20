@@ -46,7 +46,7 @@ pygmentsCodeFences = true
 
 [params]
   pagetitle = "Some notes"
-  firstline = "These posts are for my personal usage. Be careful if copy something."
+  firstline = "Please be careful when you copy something."
   commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
   # github = "dvogt23"
   #gitlab = "gitlab id"
