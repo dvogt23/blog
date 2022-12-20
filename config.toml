@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "blog📓"
+title = "blog"
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
@@ -10,7 +10,7 @@ theme = "hugo-dusk"
 #disqusShortname = ""
 
 [author]
-  name = "dvogt"
+name = "dvogt"
 
 [blackfriday]
 hrefTargetBlank = true
@@ -46,9 +46,9 @@ pygmentsCodeFences = true
 
 [params]
   pagetitle = "Some notes"
-  #firstline = "These posts are for my personal usage. Be careful if copy something."
+  firstline = "These posts are for my personal usage. Be careful if copy something."
   commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
-  #github = "dvogt23"
+  # github = "dvogt23"
   #gitlab = "gitlab id"
   #twitter = "dtri23"
   #linkedin = "dimitri-vogt-096555155"
