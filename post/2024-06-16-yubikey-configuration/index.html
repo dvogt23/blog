@@ -1,0 +1,56 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=author content="dvogt"><meta name=description content="personal developer blog for some coding notes."><meta name=keywords content="blog,tech,develop,software,coding"><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><link rel=canonical href=/post/2024-06-16-yubikey-configuration/><base href=/><meta property="og:title" content="Yubikey - rule them all"><meta property="og:description" content="Make your life secure with a hardware key"><meta property="og:type" content="article"><meta property="og:url" content="/post/2024-06-16-yubikey-configuration/"><meta property="article:section" content="post"><meta property="article:published_time" content="2024-06-18T00:00:00+00:00"><meta property="article:modified_time" content="2024-06-18T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Yubikey - rule them all"><meta name=twitter:description content="Make your life secure with a hardware key"><meta itemprop=name content="Yubikey - rule them all"><meta itemprop=description content="Make your life secure with a hardware key"><meta itemprop=datePublished content="2024-06-18T00:00:00+00:00"><meta itemprop=dateModified content="2024-06-18T00:00:00+00:00"><meta itemprop=wordCount content="509"><meta itemprop=keywords content="security,privacy,yubikey,"><link rel=stylesheet href=css/layout.css><link rel=stylesheet href=css/syntax.css><style type=text/css>body{background-color:#202020;color:#dbdbdb}a{color:#dbdbdb}pre{background:#1d1f21;border:1px solid #dbdbdb;border-radius:5px}code{background:#1d1f21}blockquote{background:#1d1f21;border-left:3px solid #dbdbdb}table{margin:1em auto;border-collapse:collapse}table,th,td{border:1px solid #dbdbdb}th{background:#dbdbdb;color:#202020}.siteTitle a{color:#b3b6b7}.post .content h1{color:#b3b6b7}.post .content h2{color:#b3b6b7}.post .content h3{color:#b3b6b7}.post .content h4{color:#b3b6b7}.post .content h5{color:#b3b6b7}.post .content h6{color:#b3b6b7}.post .content a:hover{color:#b3b6b7}.social-link:hover{color:#b3b6b7}.nav-item-title:hover{color:#b3b6b7}.tag a:hover{color:#b3b6b7}.copyright{color:#404040}.poweredby{color:#404040}.poweredby a{color:#404040}.post-preview .title a{color:#b3b6b7}.content-item a:hover{text-decoration:underline;color:#b3b6b7}.post-list .title{color:#b3b6b7}.rmore{color:#b3b6b7}.terms .term a:hover{text-decoration:underline;color:#b3b6b7}</style><script async defer data-website-id=aeec65b5-9542-46f0-bd03-fa96813535bb src=https://umami.vogt.dev/umami.js></script><title>Yubikey - rule them all</title></head><body><div class=main><header><div class=header-bar><nav><div class=siteTitle><a href=/>blog</a></div><a class=nav-item href=https://vogt.dev><div class=nav-item-title>web</div></a><a class=nav-item href=/tags/><div class=nav-item-title>tags</div></a><a class=nav-item href=/index.xml><div class=nav-item-title>rss</div></a></nav></div><div class=social-links-header></div></header><article class=post><h1 class=title>Yubikey - rule them all</h1><p class=description>Make your life secure with a hardware key</p><div class=content><p>Finally I have one(two cause of backup) Yubikey 5 NFC and FINALLY I took the time to dig deeper into private security.</p><p>Here I will provide long story short summary about my learnings and a quick howto.</p><ol><li>Download <a href=https://tails.net>tails</a> image to USB and boot it</li><li>Create secure passphrase with this commands, or with helper like
+<a href=https://raw.githubusercontent.com/drduh/YubiKey-Guide/master/passphrase.html>passphrase.html</a> or <a href=https://raw.githubusercontent.com/drduh/YubiKey-Guide/master/passphrase.csv>passphrase.csv</a> after print
+<code>lp -d Printer-Name passphrase.csv</code> or with <a href=https://secure.research.vt.edu/diceware>Dicewire</a><pre tabindex=0><code>CERTIFY_PASS=$(LC_ALL=C tr -dc &#39;A-Z1-9&#39; &lt; /dev/urandom | \
+tr -d &#34;1IOS5U&#34; | fold -w 30 | sed &#34;-es/./ /&#34;{1..26..5} | \
+cut -c2- | tr &#34; &#34; &#34;-&#34; | head -1) ; echo &#34;$CERTIFY_PASS&#34;
+</code></pre>Write them down on a paper, your PINs included and a backup flash drive with
+primary key and <code>GNUPGHOME</code> dir</li><li>Create a gpg key (<code>export GNUPGHOME=$(mktemp -d -t gnupg-$(date +%Y-%m-%d)-XXXXXXXXXX)</code>)<ol><li><code>gpg --quick-gen-key 'Sample &lt;please@dont-spam.us>' ed25519 cert never</code></li><li>Create subkeys<ol><li><code>gpg --quick-add-key $KEYID ed25519 sign 2y</code></li><li><code>gpg --quick-add-key $KEYID ed25519 auth 2y</code></li><li><code>gpg --quick-add-key $KEYID cv25519 encrypt 2y</code></li></ol></li><li>Export public key <code>gpg --export -a -o $KEYID.pub $KEYID</code></li><li>Backup secret keys</li></ol><pre tabindex=0><code>gpg --output $KEYID-Certify.key --armor --export-secret-keys $KEYID
+gpg --output $KEYID-Subkeys.key --armor --export-secret-subkeys $KEYID
+</code></pre></li><li>Configure yubikey<ol><li><p>Check status with <code>gpg --card-status</code></p></li><li><p>Create Admin & User PIN</p><pre tabindex=0><code>  ADMIN_PIN=$(LC_ALL=C tr -dc &#39;0-9&#39; &lt; /dev/urandom | fold -w8 | head -1)
+  USER_PIN=$(LC_ALL=C tr -dc &#39;0-9&#39; &lt; /dev/urandom | fold -w6 | head -1)
+  printf &#34;\nAdmin PIN: %12s\nUser PIN: %13s\n\n&#34; &#34;$ADMIN_PIN&#34; &#34;$USER_PIN&#34;
+</code></pre></li><li><p>Set Admin PIN</p><pre tabindex=0><code>  gpg --command-fd=0 --pinentry-mode=loopback --change-pin &lt;&lt;EOF
+  3
+  12345678
+  $ADMIN_PIN
+  $ADMIN_PIN
+  q
+  EOF
+</code></pre></li><li><p>Set User PIN</p><pre tabindex=0><code>  gpg --command-fd=0 --pinentry-mode=loopback --change-pin &lt;&lt;EOF
+  1
+  123456
+  $USER_PIN
+  $USER_PIN
+  q
+  EOF
+</code></pre></li><li><p>Set attributes, URL is for the possibility to fetch pub key from keyserver
+if given.</p><pre tabindex=0><code>  gpg --card-edit
+  admin
+  login
+  name
+  url
+</code></pre></li><li><p>Transfer subkeys 🔺 <strong>copy your <code>$GNUPGHOME</code> dir before transfer</strong>
+Make sure you have selected the right key, marked with *</p><pre tabindex=0><code>  gpg --edit-key $KEYID
+  key X
+  keytocard
+</code></pre></li><li><p>Verify key transfer with <code>gpg -K</code>, each subkey should have <code>></code> sign, means
+not in store. <strong>TIP:</strong> Create a new <code>GNUPGHOME</code> and import your private
+keys, to move them to a backup Yubikey as well.</p></li><li><p>Upload public key to keyserver, but first set keyserver in your
+<code>$GNUPGHOME/gpg.conf</code> with <code>keyserver https://keys.openpgp.org</code>, than send
+with <code>gpg --send-key $KEYID</code> and verify your email. <strong>TIP:</strong> Set your
+public key url in your yubikey with <code>gpg --card-edit</code></p></li></ol></li><li>Using yubikey<ol><li>Import your public key <code>gpg --import public-key.asc</code>, or do <code>fetch</code> in
+<code>gpg --card-edit</code> if you set your url</li><li>Trust this key with<pre tabindex=0><code>  gpg --command-fd=0 --pinentry-mode=loopback --edit-key $KEYID &lt;&lt;EOF
+  trust
+  5
+  y
+  save
+  EOF
+</code></pre></li><li>Set touch for yubikey actions<pre tabindex=0><code>  ykman openpgp keys set-touch dec on
+  ykman openpgp keys set-touch enc on
+  ykman openpgp keys set-touch sig on
+  ykman openpgp keys set-touch aut on
+</code></pre></li><li>Check your ssh public key with <code>ssh-add -L</code>, if you have some trouble,
+check <a href="https://github.com/drduh/YubiKey-Guide?tab=readme-ov-file#ssh">SSH section</a></li><li>Secure your iCloud with your Yubikey (you need 2 of them)
+Go to settings in your iPhone, open your apple account, open security,
+2fa, than add your hardware keys.</li><li>Secure your bitwarden 2FA with your key, open bitwarden (vaultwarden) on
+web, go to security, 2FA and add your keys at FIDO2/WebAuth</li></ol></li></ol><p>Sources:</p><ul><li><a href=https://github.com/drduh/YubiKey-Guide>Yubikey Guide</a></li><li><a href=https://yubikey.jms1.info>Yubikey howto</a></li></ul></div><footer class=post-footer>Please comment @github: <a href="https://github.com/dvogt23/blog/issues/new?labels=comment&amp;title=Page: Yubikey%20-%20rule%20them%20all" target=_blank>comment</a></footer></article><footer><div class=copyright>© dima 2018</div><div class=poweredby><a href=https://gohugo.io/ target=_blank>hugo</a>/<a href=https://github.com/gyorb/hugo-dusk target=_blank>hugo-dusk</a></div></footer></div></body></html>
