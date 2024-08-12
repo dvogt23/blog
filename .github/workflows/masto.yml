@@ -1,0 +1,44 @@
+on:
+  schedule:
+    - cron: '0 8 * * *' # once a day, at 8
+
+jobs:
+  fetch-posts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+
+      - name: Pull changes
+        run: |
+          git config pull.rebase false
+          git pull
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21.6'
+
+      - name: Install go binary
+        run: |
+          go install git.garrido.io/gabriel/mastodon-markdown-archive@latest
+
+      - name: Run mastodon-markdown-archive
+        run: |
+          ./cmd/archive-last-toots.sh
+
+      - name: Commit files
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Committing updates"
+            git add .
+            git config --global user.email "[Action] Masto archiver"
+            git config --global user.name "mast@archive.no"
+            git commit -m "[bot] Update toots"
+            git push
+            exit 0
+          fi
+
+          echo "No updates to commit"
