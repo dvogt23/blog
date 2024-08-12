@@ -1,0 +1,47 @@
+.avator {
+  border-radius: 100px;
+  width: 48px;
+  margin-right: 15px;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  margin-top: 2em;
+}
+
+.tweet-header-info {
+  font-weight: bold;
+}
+
+.tweet-header-info blockquote {
+  padding: 0em;
+  padding-left: 2em;
+}
+
+.tweet-header-info span {
+  color: #657786;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.tweet-header-info p {
+  font-weight: normal;
+  margin-top: 5px;
+
+}
+
+@media screen and (max-width:430px) {
+  .tweet-header {
+    flex-direction: column;
+  }
+
+  .tweet-header img {
+    margin-bottom: 20px;
+  }
+
+  .tweet-header-info p {
+    margin-bottom: 30px;
+  }
+}
