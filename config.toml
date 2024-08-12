@@ -29,6 +29,12 @@ pygmentsCodeFences = true
   url = "https://vogt.dev"
 
 [[menu.main]]
+  name = "tweets"
+  weight = -120
+  identifier = "tweets"
+  url = "/toots/"
+
+[[menu.main]]
   name = "tags"
   weight = -110
   identifier = "tag"
@@ -48,11 +54,11 @@ pygmentsCodeFences = true
   pagetitle = "Some notes"
   firstline = "... that might be helpful. Please be careful when you copy something."
   commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
-  # github = "dvogt23"
-  #gitlab = "gitlab id"
-  #twitter = "dtri23"
-  #linkedin = "dimitri-vogt-096555155"
-  #email = "myemail"
+  tweetDescription = "My tweets/toots archive directly synced from fediverse. Actually from "
+  mastodon = "https://mas.to/@dima23"
+  mastodonName = "dima"
+  mastodonAccount = "@dima23@mas.to"
+  mastodonAvatar = "https://media.mas.to/accounts/avatars/111/957/112/966/609/354/original/5a701f90d9fe94e9.png"
 
 [params.colors]
   # hugo-dusk colors
