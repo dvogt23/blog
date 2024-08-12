@@ -70,6 +70,13 @@ pygmentsCodeFences = true
 
 enableRobotsTXT = true
 
+[outputs]
+  home = ['html', 'rss']
+  section = ['html']
+  toots = ['html']
+  taxonomy = ['html']
+  term = ['html']
+
 [sitemap]
 changefreq = "monthly"
 filename = "sitemap.xml"
