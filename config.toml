@@ -29,6 +29,12 @@ pygmentsCodeFences = true
   url = "https://vogt.dev"
 
 [[menu.main]]
+  name = "now"
+  weight = -120
+  identifier = "now"
+  url = "/now/"
+
+[[menu.main]]
   name = "tweets"
   weight = -120
   identifier = "tweets"
