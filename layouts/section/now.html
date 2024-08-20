@@ -5,4 +5,8 @@
   <div class="content"> {{ .Content }} </div>
 </article>
 
+
+{{ with .GitInfo }}
+<i>Last modification: {{ .AuthorDate.Format "2006-01-02" }}</i>
+{{ end }}
 {{ partial "footer.html" . }}

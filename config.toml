@@ -5,6 +5,7 @@ canonifyurls = true
 languageCode = "en-US"
 paginate = 10
 theme = "hugo-dusk"
+enableGitInfo = true
 
 #googleAnalytics = ""
 #disqusShortname = ""
@@ -79,7 +80,6 @@ enableRobotsTXT = true
 [outputs]
   home = ['html', 'rss']
   section = ['html']
-  toots = ['html']
   taxonomy = ['html']
   term = ['html']
 
