@@ -11,6 +11,7 @@ date = "2017-12-18"
 categories = [
     "unix",
 ]
+type = 'posts'
 +++
 
 I am a big fan of the unix [password-store](https://www.passwordstore.org), one of that which I used every day. And the best of it, thats only a bash script.

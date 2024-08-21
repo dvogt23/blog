@@ -1,0 +1,26 @@
+{{ partial "header.html" . }}
+
+{{with .Site.Params.pagetitle}}
+<h1>{{.}}</h1>
+{{end}}
+{{with .Site.Params.firstline}}
+<p>{{.}}</p>
+{{end}}
+
+<main>
+
+  {{ $pages := where .Site.AllPages ".Section" "posts" }}
+  {{ $paginator := .Paginate $pages }}
+  {{ range $paginator.Pages }}
+  <div class="content-list">
+    {{ range .Data.Pages.GroupByDate "2006" }}
+    {{ range .Pages }}
+    {{ .Render "li"}}
+    {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+
+</main>
+
+{{ partial "footer.html" . }}

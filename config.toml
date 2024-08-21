@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "blog"
+title = "dima."
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
@@ -27,24 +27,30 @@ pygmentsCodeFences = true
   name = "web"
   weight = -120
   identifier = "web"
-  url = "https://vogt.dev"
+  url = "/"
+
+[[menu.main]]
+  name = "blog"
+  weight = -121
+  identifier = "posts"
+  url = "/posts"
 
 [[menu.main]]
   name = "now"
-  weight = -120
+  weight = -123
   identifier = "now"
   url = "/now/"
 
 [[menu.main]]
   name = "tweets"
-  weight = -120
-  identifier = "tweets"
+  weight = -122
+  identifier = "toots"
   url = "/toots/"
 
 [[menu.main]]
   name = "tags"
   weight = -110
-  identifier = "tag"
+  identifier = "tags"
   url = "/tags/"
 
 [[menu.main]]
@@ -58,7 +64,7 @@ pygmentsCodeFences = true
   description = "personal developer blog for some coding notes."
 
 [params]
-  pagetitle = "Some notes"
+  pagetitle = "Some articles"
   firstline = "... that might be helpful. Please be careful when you copy something."
   commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
   tweetDescription = "My tweets/toots archive directly synced from fediverse. Actually from "
