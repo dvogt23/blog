@@ -37,6 +37,10 @@
     flex-direction: column;
   }
 
+  .avator {
+    display: none;
+  }
+
   .tweet-header img {
     margin-bottom: 20px;
   }

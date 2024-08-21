@@ -80,6 +80,7 @@ a:focus {
   outline: 0;
 }
 
+
 header {
   justify-content: space-around;
   flex-direction: column;
@@ -100,6 +101,10 @@ nav {
   font-size: 1.2em;
   text-decoration: none;
   font-weight: bold;
+}
+
+.active {
+  color: yellow;
 }
 
 .nav-item-title {

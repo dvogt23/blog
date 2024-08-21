@@ -1,0 +1,131 @@
+body {
+  margin: 50px;
+  background: url("../img/bg-pattern.png") repeat;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #c2c2c2;
+  font-weight: 300;
+  /*text-align: center;*/
+}
+
+h1 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue";
+  font-weight: 200;
+  color: #fff;
+}
+h1 .flip {
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: 40px;
+  top: 0px;
+  -moz-perspective: 500;
+  -webkit-perspective: 500;
+  perspective: 500;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+h1 .flip span {
+  font-weight: 600;
+  display: block;
+  width: 300px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  -moz-transform-origin: 0% 0%;
+  -ms-transform-origin: 0% 0%;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -moz-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  -webkit-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  position: absolute;
+  top: -20px;
+  left: 0;
+}
+h1 .flip span.set {
+  top: 0;
+  opacity: 1;
+  -moz-transform-origin: 0% 0%;
+  -ms-transform-origin: 0% 0%;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+h1 .flip span.down {
+  top: 40px;
+  opacity: 0;
+  -moz-transform-origin: 0% 0%;
+  -ms-transform-origin: 0% 0%;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -moz-transform: rotateX(-90deg);
+  -ms-transform: rotateX(-90deg);
+  -webkit-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+a {
+  color: #c2c2c2;
+}
+
+a:hover {
+    color: yellow;
+}
+
+.key {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: 200;
+  color: #fff;
+  text-decoration: none;
+}
+
+.desc {
+  font-size: 1.3em;
+}
+
+/* mobile */
+@media only screen and (max-width: 1020px) {
+  .main{
+    margin: 0 auto;
+    width: 100%;
+    /*border: 3px solid #73AD21;*/
+    padding: 10px;
+  }
+
+  body {
+    font-size: 4em;
+    margin: 0px;
+  }
+
+  h1 .flip {
+  width: 100%;
+  top: -20px;
+  }
+
+  h1 .flip span {
+    width: 100%;
+  }
+}
+@media (min-width: 1020px) {
+  .main{
+    margin: 0 auto;
+    width: 40%;
+    /*border: 3px solid #73AD21;*/
+    padding: 40px;
+  }
+
+  h1 .flip {
+  width: 200px;
+  top: 10px;
+  }
+
+}
