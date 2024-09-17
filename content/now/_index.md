@@ -5,7 +5,7 @@ too](https://nownownow.com/about).
 
 ### Working
 
-Since 2001, I've been working as a Senior Developer (Full-Stack) at @finstreet, focusing on developing finance portals using ruby on rails.
+Since 2020, I've been working as a Senior Developer (Full-Stack) at @finstreet, focusing on developing finance portals using ruby on rails.
 
 ### Learning
 
