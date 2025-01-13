@@ -12,7 +12,7 @@ Since 2020, I've been working as a Senior Developer (Full-Stack) at @finstreet, 
 Lots of technical topics, like smart home automation with Home Assistant, various home lab services, and dig deeper in the ruby on rails ecosystem.
 
 Always try to optimize my development workflow with neovim and terminal
-applications. Plus, actually lewrning a better typing experience with a ferris sweep split keyboard. 
+applications. Plus, actually learning a better typing experience with a ferris sweep split keyboard. 
 
 I love to learn something from the cyber security world, like principles of
 cryptocurrencies (technical & psychological basis) and security of web applications in the first step.
