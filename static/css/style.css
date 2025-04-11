@@ -178,38 +178,24 @@ a:hover {
   text-align: center;
 }
 
-@media (min-width: 920px) {
+@media only screen and (max-device-width: 568px) {
   .main {
-    margin: 0 auto;
-    width: 50%;
-    padding: 40px;
-  }
-
-@media screen and (max-width: 320px) {
-  .main {
+    margin: 0px;
     margin: 0 auto;
     width: 100%;
     padding: 10px;
+    font-size: 3rem;
+    color: #fff;
   }
 
-  body {
-    font-size: 4rem;
-    margin: 0px;
-  }
-
-  .content__container {
+.accordion label, .content {
+  font-size: 2em;
+}
+  .content__container, .content__container__text {
     font-size: 4rem;
     margin: 0px;
     height: 80px;
     min-width: 500px;
-  }
-
-  .content__container__text {
-    font-size: 4rem;
-  }
-
-  .content__container__list {
-    font-size: 4rem;
   }
 
   .content__container__list__item {
