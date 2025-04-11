@@ -3,7 +3,7 @@ title = "dima."
 copyright = "© dima 2018"
 canonifyurls = true
 languageCode = "en-US"
-paginate = 10
+# paginate = 10
 theme = "hugo-dusk"
 enableGitInfo = true
 
