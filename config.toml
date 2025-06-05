@@ -24,70 +24,70 @@ pygmentsStyle = "vim" # other dark style options: vim, fruity, monokai
 pygmentsCodeFences = true
 
 [[menu.main]]
-  name = "web"
-  weight = -120
-  identifier = "web"
-  url = "/"
+name = "web"
+weight = -120
+identifier = "web"
+url = "/"
 
 [[menu.main]]
-  name = "blog"
-  weight = -121
-  identifier = "posts"
-  url = "/posts"
+name = "blog"
+weight = -121
+identifier = "posts"
+url = "/posts"
 
 [[menu.main]]
-  name = "now"
-  weight = -123
-  identifier = "now"
-  url = "/now/"
+name = "now"
+weight = -123
+identifier = "now"
+url = "/now/"
 
 [[menu.main]]
-  name = "tweets"
-  weight = -122
-  identifier = "toots"
-  url = "/toots/"
+name = "tweets"
+weight = -122
+identifier = "toots"
+url = "/toots/"
 
 [[menu.main]]
-  name = "tags"
-  weight = -110
-  identifier = "tags"
-  url = "/tags/"
+name = "tags"
+weight = -110
+identifier = "tags"
+url = "/tags/"
 
 [[menu.main]]
-  name = "rss"
-  weight = -100
-  identifier = "rss"
-  url = "/index.xml"
+name = "rss"
+weight = -100
+identifier = "rss"
+url = "/index.xml"
 
 [params.meta]
-  keywords = "blog, tech, develop, software, coding"
-  description = "personal developer blog for some coding notes."
+keywords = "blog, tech, develop, software, coding"
+description = "personal developer blog for some coding notes."
 
 [params]
-  pagetitle = "Some articles"
-  firstline = "... that might be helpful. Please be careful when you copy something."
-  commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
-  tweetDescription = "My tweets/toots archive directly synced from fediverse. Actually from "
-  mastodon = "https://mas.to/@dima23"
-  mastodonName = "dima"
-  mastodonAccount = "@dima23@mas.to"
-  mastodonAvatar = "https://media.mas.to/accounts/avatars/111/957/112/966/609/354/original/5a701f90d9fe94e9.png"
+pagetitle = "Some articles"
+firstline = "... that might be helpful. Please be careful when you copy something."
+commentLink = "https://github.com/dvogt23/blog/issues/new?labels=comment&title=Page:"
+tweetDescription = "My tweets/toots archive directly synced from fediverse. Actually from "
+mastodon = "https://mas.to/@dima23"
+mastodonName = "dima"
+mastodonAccount = "@dima23@mas.to"
+mastodonAvatar = "https://media.mas.to/accounts/avatars/111/957/112/966/609/354/original/5a701f90d9fe94e9.png"
 
 [params.colors]
-  # hugo-dusk colors
-  background = "#202020" # background color for the site
-  main = "#B3B6B7"
-  text = "#dbdbdb"
-  code-quote-bg = "#1D1F21" # background color for quotes and code blocks
-  copyright = "#404040" # copyright text color
+# hugo-dusk colors
+background = "#202020"    # background color for the site
+main = "#B3B6B7"
+text = "#dbdbdb"
+code-quote-bg = "#1D1F21" # background color for quotes and code blocks
+copyright = "#404040"     # copyright text color
 
 enableRobotsTXT = true
 
 [outputs]
-  home = ['html', 'rss']
-  section = ['html']
-  taxonomy = ['html']
-  term = ['html']
+home = ['html', 'rss']
+section = ['html']
+taxonomy = ['html']
+term = ['html']
 
 [sitemap]
 changefreq = "monthly"
